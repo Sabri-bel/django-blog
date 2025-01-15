@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+#The dj_database_url import is used to convert the database URL we copied from our PostgreSQL from Code Institute email into a format that Django can use to connect to an external database server.
 import dj_database_url
+#The code uses another method from the os module to check if the env.py file path exists. If it does, then it will be imported. If it does not exist, the env import will not be attempted so that no error will occur.
 if os.path.isfile('env.py'):
     import env
 
@@ -24,10 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# This is a unique, secret, and random string that is used for cryptographic signing. That means that it ensures the integrity of the data stored
 SECRET_KEY = 'django-insecure-c+ip(9r-3l$$%-^tsj6b$2v5^ejcc0c4%e!g-&(tqu@=y5*ii8'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-sabribel-djangoblog-tbbunypul3a.ws.codeinstitute-ide.net', '.herokuapp.com']
 
@@ -87,6 +91,7 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 
 DATABASES = {
     'default':
+    #This code uses os.environ.get to get the value stored in the DATABASE_URL environment variable. The value is then parsed using dj_database_url to put it in a format that Django can use
 dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
