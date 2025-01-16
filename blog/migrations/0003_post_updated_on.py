@@ -4,7 +4,7 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
+ # the dependencies refer to the previous migration, 0002_post_excerpt, and the operations are to add a field with the details we gave.
     dependencies = [
         ('blog', '0002_post_excerpt'),
     ]
