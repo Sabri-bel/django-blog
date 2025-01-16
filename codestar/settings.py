@@ -62,11 +62,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'codestar.urls'
 
+#below the code that tells django where to find templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
-        'APP_DIRS': True,
+        'DIRS': [TEMPLATES_DIR], #The DIRS key tells Django which directories to look in
+        'APP_DIRS': True, #APP_DIRS set to True, which means that Django will also look for a templates directory inside all our app directories.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

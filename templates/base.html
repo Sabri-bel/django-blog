@@ -1,7 +1,7 @@
 {% load static %}
 
 {% url 'home' as home_url %}
-
+<!--it contains the header and the footer but not not the list of posts-->
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 
@@ -54,14 +54,20 @@
     <main class="flex-shrink-0 main-bg">
 
         {% block content %}
-        <!-- Content Goes here -->
+        <!-- Content from index html Goes here we named our block content 
+         more blocks with different names to your own projects.
+         -->
         {% endblock content %}
 
     </main>
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">Made by Code Instituters</p>
+        <p class="m-0 text-center text-white">
+            {% block copyright %}
+            default text added here it will be overwritten by the block
+            {% endblock copyright %}
+        </p>
         <p class="m-0 text-center text-white">Follow us: <i class="fab fa-facebook-square ms-3"></i>
             <i class="fab fa-twitter-square ms-3"></i>
             <i class="fab fa-instagram-square ms-3"></i>
