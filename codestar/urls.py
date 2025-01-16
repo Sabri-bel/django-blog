@@ -15,12 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include #it allows to use and import another urls.py file
+#Our project-level urls.py file should include the urls.py files in all of our apps, and, therefore, will define our top-level URL structure
 
 
 urlpatterns = [
     #This pattern tells Django to look in the blog directory URL file for any blog urlpatterns.
     path('', include("blog.urls"), name='blog-urls'),
+    path('summernote/', include('django_summernote.urls')),
     path('admin/', admin.site.urls),
 ]
  #Next, we need to create a templates directory in the blog app, with another directory nested within, named blog. Django expects this file structure. 
