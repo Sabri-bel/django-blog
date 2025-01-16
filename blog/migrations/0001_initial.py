@@ -12,7 +12,8 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
-
+#the operation below tells Django what changes to make to the database.In this case, the changes are to create a model named Post. 
+#The fields list contains exactly the same field names and types that you created in your model in models.py.
     operations = [
         migrations.CreateModel(
             name='Post',
