@@ -39,12 +39,30 @@
             </div>
         </div>
     </div>
+    <!--when the ListView has more objects in post_list than the paginate_by setting specifies, 
+    then it sets the is_paginated value to True. 
+    We then check for that value using an if statement and display the buttons.-->
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number}}" class="page-link">&laquo PREV</a></li>
+            {% endif %}
+            <!--second if statement, which checks whether to display the Next button or not. 
+            For the last page, the number of posts left to display will be less than or equal to the paginate_by setting, 
+            so Django sets page_obj.has_next to False.-->
+        <!--When you go to the second page, Django adds a query string to the URL that says ?page=2. 
+        This query string is interpreted by the generic ListView
+         The code to generate the URL comes from the Next button's anchor tag.-->
             {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
             {% endif %}
+<!--the second if statement and the code for the Next button in index.html. Some of the helpful methods provided by the page object are:
+Method 	    Purpose
+has_next 	True if there is a next page, so False for the last page.
+has_previous 	True if there is a previous page, so False for the first page.
+next_page_number 	Returns the next page number.
+previous_page_number 	Returns the previous page number.-->
         </ul>
     </nav>
     {% endif %}
