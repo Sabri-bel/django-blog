@@ -46,11 +46,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django_summernote',
     'blog',
     'about',
 ]
 
+SITE_ID = 1 #1 means that django can handle miltple sites from one database
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # middleware  sits between the request and the response, a bit like a specialised kind of view.
 # Middleware can modify a request prior to it hitting the view code and then modify the response after the view has created it.
@@ -66,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'codestar.urls'
@@ -125,6 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_EMAIL_VERIFICATION = 'none' #Without this line, you would get Internal Server errors (code 500) during login and registration. 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
