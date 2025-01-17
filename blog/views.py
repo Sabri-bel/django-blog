@@ -27,14 +27,18 @@ def post_detail(request, slug): #slg param get the argument from urls.py post_de
     # this select a single blog post from the database, the one whose slug matches the slug in our URL and store that 
     # result in a variable called post, and then we add a dictionary as an argument to the render function.
     #  This dictionary is referred to as context.It is convention that the key name would be the same as the variable 
-
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
 #When the dictionary is sent to the template, we can then access its values using dot notation, 
 # Because our post object only contains one database record, 
 #we don't need a for loop to iterate through it in the template.
     return render(
         request,
         "blog/post_detail.html", # The path to the template file is included in the view function return. 
-        {"post": post}, #In our views file, we set the name of the object as post, e.g. {"post": post}.
+        {"post": post,
+        "comments": comments,
+        "comment_count": comment_count,
+        }, #In our views file, we set the name of the object as post, e.g. {"post": post}.
         # So, in post_detail.html, we can now access its attribute
     )
 #A view function takes a web request and returns a web response. always passes in the request object as the first argument
