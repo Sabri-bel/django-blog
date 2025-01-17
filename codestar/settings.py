@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django_summernote',
     'blog',
     'about',
@@ -58,6 +60,9 @@ INSTALLED_APPS = [
 SITE_ID = 1 #1 means that django can handle miltple sites from one database
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # middleware  sits between the request and the response, a bit like a specialised kind of view.
 # Middleware can modify a request prior to it hitting the view code and then modify the response after the view has created it.

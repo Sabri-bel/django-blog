@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.contrib import messages
 from .models import Post
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -29,6 +31,20 @@ def post_detail(request, slug): #slg param get the argument from urls.py post_de
     #  This dictionary is referred to as context.It is convention that the key name would be the same as the variable 
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
+
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'comment submitted and awaiting approval'
+            )
+    comment_form = CommentForm()
 #When the dictionary is sent to the template, we can then access its values using dot notation, 
 # Because our post object only contains one database record, 
 #we don't need a for loop to iterate through it in the template.
@@ -38,6 +54,7 @@ def post_detail(request, slug): #slg param get the argument from urls.py post_de
         {"post": post,
         "comments": comments,
         "comment_count": comment_count,
+        "comment_form": comment_form,
         }, #In our views file, we set the name of the object as post, e.g. {"post": post}.
         # So, in post_detail.html, we can now access its attribute
     )
