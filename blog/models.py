@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 STATUS = ((0, "Draft"), (1, "Published"))
 
 class Post(models.Model):
+    #The slug is used for the blog post path as it uniquely identifies the post and contains only characters valid for a URL. In our Post model, we defined that the title and slug are unique,
+    #  with unique=True, so we can be sure that the slug will only match one blog post
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True) 
     #In publishing, a slug is a short name for an article that is still in production.

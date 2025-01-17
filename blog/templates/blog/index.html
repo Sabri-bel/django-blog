@@ -20,6 +20,11 @@
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
+                            <!--The DTL url tag syntax allows us to pass in an argument in addition to the urlpattern name. As the anchor element is inside the for loop, we can use post.slug as the argument,
+                             which gives us the slug value for the specific post in that iteration of the post_list object
+                            In the href, we constructed a DTL url tag, i.e. {% url 'post_detail' post.slug  %}. 
+                            It contains post.slug, and the urlpattern name of 'post_detail'. 
+                            As the anchor is inside the for-loop, post.slug is this blog post's slug value.-->
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
                                 <!--This uses the name, post_detail from the urlpattern and the slug variable value is accessed 
                                 with the same dot notation as seen for author, title, excerpt and so on.-->

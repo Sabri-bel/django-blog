@@ -24,7 +24,11 @@
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text">
-                    {{ post.content | safe }}
+                    <!-- filter in the Django Template Language. In this case, it takes the post.content variable and filters it through safe. 
+                     The safe filter tells Django that this content is  safe to be interpreted as HTML
+                     When you remove the safe filter, instead of rendering the HTML for us, 
+                     Django displays all of the HTML tags as well as the text.-->
+                    {{ post.content | safe }} 
                 </p>
             </div>
         </div>
@@ -32,3 +36,5 @@
 </div>
 
 {% endblock content %}
+
+
