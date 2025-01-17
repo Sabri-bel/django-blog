@@ -50,6 +50,12 @@ INSTALLED_APPS = [
     'blog',
 ]
 
+
+# middleware  sits between the request and the response, a bit like a specialised kind of view.
+# Middleware can modify a request prior to it hitting the view code and then modify the response after the view has created it.
+# In the case of Whitenoise, it modifies the response to load the static files from the staticfiles directory and serve them when a user visits our site.
+#Note: Middleware often needs to be loaded in a particular order. The documentation for a piece of middleware will tell you where it needs to be in the MIDDLEWARE list in settings.py.
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', #must be placed directly after the Django SecurityMiddleware.
@@ -136,7 +142,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles') #statifiles is automatically created from "collect statics" command
+#The collectstatic needs to be run every time we add or change a CSS, JavaScript or static image file.
+#. Using whitenoise, Django will serve all our CSS, JavaScript and static image files from that directory
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
