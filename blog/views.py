@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Post
 
@@ -18,3 +18,13 @@ class PostList(generic.ListView):
     # is_paginated and a dictionary object called page_obj, which we just call the Page object.
     #For is_paginated, Django counts the number of objects, or records, returned by our queryset. If that is more than the number set in the paginate_by property,
     #  then is_paginated is set to True otherwise it is set to False.
+
+def post_detail(request, slug):
+    ''' display an individual model:'blog.Post '''
+    queryset = Post.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
+    return render(
+        request,
+        "blog/post_detail.html",
+        {"post": post}
+    )
