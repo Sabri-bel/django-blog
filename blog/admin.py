@@ -20,3 +20,5 @@ admin.site.register(Comment)
 
 # This will allow you to create, update and delete blog posts from the admin panel. 
 #he admin.py file is where we register our custom models so that they can be accessed through the admin panel
+
+
