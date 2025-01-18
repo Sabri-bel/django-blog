@@ -33,13 +33,13 @@ def post_detail(request, slug): #slg param get the argument from urls.py post_de
     comment_count = post.comments.filter(approved=True).count()
 
     if request.method == "POST":
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
+        comment_form = CommentForm(data=request.POST) #from forms.py files
+        if comment_form.is_valid(): # check the costraints
+            comment = comment_form.save(commit=False) #retrun an object that can be modified further (work like the "git add" command)
             comment.author = request.user
             comment.post = post
-            comment.save()
-            messages.add_message(
+            comment.save() # this is the commit of the form
+            messages.add_message( #is is giving feedback to the user about the posted message
                 request,
                 messages.SUCCESS,
                 'comment submitted and awaiting approval'

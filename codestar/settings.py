@@ -61,7 +61,7 @@ SITE_ID = 1 #1 means that django can handle miltple sites from one database
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" #use this a teplate pack
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # middleware  sits between the request and the response, a bit like a specialised kind of view.
