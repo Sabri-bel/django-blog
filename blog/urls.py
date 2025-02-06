@@ -7,6 +7,8 @@ from django.urls import path
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
     path('<slug:slug>/', views.post_detail, name='post_detail'), #Note that as this is a function-based view, no as_view() method is required, as we saw with class-based views
+    path('<slug:slug>/edit_comment/<int:comment_id>', 
+        views.comment_edit, name='comment_edit'),
 ]
 #In the post_detail URL path, the argument value from the url tag is then passed into <slug:slug>. The slug path converter before the colon defines the data type as a slug, 
 # and the slug after the colon is the post.slug value passed from the template. 
