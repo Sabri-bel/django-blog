@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 <!-- index.html content starts here -->
@@ -15,6 +15,11 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">
+                                {% if "placeholder" in post.featured_image.url %}
+                                    <img src="{% static 'images/default.jpg' %}" alt="placeholder image" class="card-img-top">
+                                {% else %}
+                                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="card-img-top">
+                                {% endif %}
                                 <div class="image-flash">
                                     <!--double curly braket means variable. it will be filled by the value of the variable-->
                                     <p class="author">Author: {{ post.author }}</p>

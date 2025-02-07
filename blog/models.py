@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 #A Model is a Python class, and each attribute represents a database field. Each model in your models.py file maps directly to a single database table.
@@ -19,6 +20,7 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name="blog_posts"
         )
+    featured_image = CloudinaryField('image', default='Placeholder')
     #One user can write many posts, so this is a one-to-many or Foreign Key. 
     content = models.TextField() #this is the blog article content itself
     created_on = models.DateTimeField(auto_now_add=True)
