@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse #reverse is a func that construct an url from the provided path name and arguments
 from django.views import generic
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect #tell django to go to another browser uel
 from .models import Post, Comment
 from .forms import CommentForm
 
@@ -74,18 +74,18 @@ def comment_edit(request, slug, comment_id):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
-        comment_form = CommentForm(data=request.POST, instance=comment)
+        comment_form = CommentForm(data=request.POST, instance=comment) #instance=comment make sure thatany changes of the form will be applied to the existing comment and not a  new one
 
-        if comment_form.is_valid() and comment.author == request.user:
+        if comment_form.is_valid() and comment.author == request.user: #allow only the registered user to make any modification
             comment = comment_form.save(commit=False)
             comment.post = post
-            comment.approved = False
+            comment.approved = False #comment return in unapproved status
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
             messages.add_message(request, messages.ERROR, 'Error updating comment!')
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    return HttpResponseRedirect(reverse('post_detail', args=[slug])) #return theuser to the post modified uding the arg =slug
 
 def comment_delete(request, slug, comment_id):
     """
@@ -95,7 +95,7 @@ def comment_delete(request, slug, comment_id):
     post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
     if comment.author == request.user:
-        comment.delete()
+        comment.delete() #straightforward delete
         messages.add_message(request, messages.SUCCESS, 'comment deleted!')
     else: messages.add_message(request, messages.ERROR, 'you can only delete your own content')
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))

@@ -1,10 +1,10 @@
 const editButtons = document.getElementsByClassName("btn-edit");
-const commentText = document.getElementById("id_body");
+const commentText = document.getElementById("id_body"); //*this id was automatically generated in the text area by {{comment_form |crispy}}
 const commentForm = document.getElementById("commentForm");
 const submitButton = document.getElementById("submitButton");
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteConfirm = document.getElementById("deleteConfirm");
+const deleteConfirm = document.getElementById("deleteConfirm"); /* confirmation modal button
 
 /**
 * Initializes edit functionality for the provided edit buttons.
@@ -20,7 +20,7 @@ for (let button of editButtons) {
   button.addEventListener("click", (e) => {
     let commentId = e.target.getAttribute("comment_id");
     let commentContent = document.getElementById(`comment${commentId}`).innerText;
-    commentText.value = commentContent;
+    commentText.value = commentContent; /*put the comment into the text field*/
     submitButton.innerText = "Update";
     commentForm.setAttribute("action", `edit_comment/${commentId}`);
   });
