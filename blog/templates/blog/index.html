@@ -16,9 +16,11 @@
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in post.featured_image.url %}
-                                    <img src="{% static 'images/default.jpg' %}" alt="placeholder image" class="card-img-top">
+                                <img class="card-img-top" src="{% static 'images/default.jpg' %}"
+                                    alt="placeholder image">
                                 {% else %}
-                                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="card-img-top">
+                                <img class="card-img-top" src=" {{ post.featured_image.url }}"
+                                    alt="{{ post.title }}">
                                 {% endif %}
                                 <div class="image-flash">
                                     <!--double curly braket means variable. it will be filled by the value of the variable-->
